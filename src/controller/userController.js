@@ -22,6 +22,7 @@ exports.getallTodos = async(req, res) => {
         });
     }
 };
+
 //delete Todo tasks
 
 //delete all Todo tasks
@@ -29,3 +30,24 @@ exports.getallTodos = async(req, res) => {
 //update Todo task
 
 //add Todo task
+exports.createTodo = async(req, res) => {
+    try {
+    let todo = await req.body;
+    let created = await Todo.create(todo);
+    if(!created) return res.status(400).json({
+        success: false,
+        message: "Todo creation failed"
+    });
+    return res.status(200).json({
+        success: true,
+        message: "Todo created successfully",
+        todo: created,
+    });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "internal server error",
+            error: error.message
+        });
+    }
+};

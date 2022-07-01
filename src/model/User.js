@@ -1,30 +1,18 @@
-const {Schema, model} = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema ({
-    username: {
+    title: {
         type: String,
         required: true,
         minlength: 3,
         maxlenght: 20,
     },
-    email:{
+    description: {
         type: String,
         required: true,
         uinque: true,
         minlength: 3,
-        maxlenght: 20,
-    },
-    age:{
-        type: Number,
-        default: null,
-    },
-    isUser:{
-        type: Boolean,
-        default: true,
-    },
-    isAdmin:{
-        type: Boolean,
-        default: false,
+        maxlenght: 200,
     },
   },
   {timestamps:true}
